@@ -8,8 +8,8 @@ namespace WordGuessGame
         static void Main(string[] args)
         {
             string path = "../../../../words.txt";
-            
             if (!File.Exists(path))
+                //Write words file if does not exist
             {
                 FileCreateWords(path);
             }
@@ -17,11 +17,15 @@ namespace WordGuessGame
             PlayGame(GetRandomWord(path));
         }
 
+        /// <summary>
+        /// Writes word file
+        /// </summary>
+        /// <param name="path">file path</param>
         static void FileCreateWords(string path)
         {
             using(StreamWriter streamwriter = new StreamWriter(path))
             {
-                streamwriter.WriteLine("Dog\nCat\nFerret");
+                streamwriter.WriteLine("Dog\nCat\nFerret\nCow\nHorse\nAlpaca\nChicken");
             }
         }
 
