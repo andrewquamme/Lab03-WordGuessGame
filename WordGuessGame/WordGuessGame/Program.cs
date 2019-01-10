@@ -14,10 +14,29 @@ namespace WordGuessGame
                 FileCreateWords(path);
             }
 
-            for (int i = 0; i < 20; i++)
+            string word = "Alligator";
+            string[] splitWord = new string[word.Length];
+            for (int i = 0; i < splitWord.Length; i++)
             {
-                Console.WriteLine(GetRandomWord(path));
+                splitWord[i] = "_";
             }
+            int solved = 0;
+            do
+            {
+                Console.WriteLine(string.Join(" ", splitWord));
+
+            } while (solved == 0);
+
+            if (word.Contains("g"))
+            {
+
+            }
+            
+            
+            //for (int i = 0; i < 20; i++)
+            //{
+            //    Console.WriteLine(GetRandomWord(path));
+            //}
         }
 
         static void FileCreateWords(string path)
