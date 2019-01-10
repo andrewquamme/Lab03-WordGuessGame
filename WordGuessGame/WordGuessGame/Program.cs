@@ -18,7 +18,7 @@ namespace WordGuessGame
             }
             FileAppendWord(path);
             //FileDeleteWords(path);
-            
+            //RandomNumberGenerator();
         }
 
         static void FileCreateWords(string path)
@@ -42,7 +42,10 @@ namespace WordGuessGame
         {
             using (StreamWriter streamWriter = File.AppendText(path))
             {
-                streamWriter.WriteLine(DateTime.UtcNow);
+                for (int i = 0; i < 10; i++)
+                {
+                    streamWriter.WriteLine(RandomNumberGenerator());
+                }
             }
         }
 
@@ -51,9 +54,10 @@ namespace WordGuessGame
             File.Delete(path);
         }
 
-        static void RandomNumberGenerator()
+        static int RandomNumberGenerator()
         {
-
+            Random rand = new Random();
+            return rand.Next(0, 11);
         }
     }
 }
