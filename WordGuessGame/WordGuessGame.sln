@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordGuessGame", "WordGuessGame\WordGuessGame.csproj", "{47A0356E-A2C4-4A1A-B159-348B7C2112B0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordGuessGameTDD", "WordGuessGameTDD\WordGuessGameTDD.csproj", "{B3AFD765-B274-4746-9A0D-92DF1621B59B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{47A0356E-A2C4-4A1A-B159-348B7C2112B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47A0356E-A2C4-4A1A-B159-348B7C2112B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47A0356E-A2C4-4A1A-B159-348B7C2112B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3AFD765-B274-4746-9A0D-92DF1621B59B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3AFD765-B274-4746-9A0D-92DF1621B59B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3AFD765-B274-4746-9A0D-92DF1621B59B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3AFD765-B274-4746-9A0D-92DF1621B59B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
