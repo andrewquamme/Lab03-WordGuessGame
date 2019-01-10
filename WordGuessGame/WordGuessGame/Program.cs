@@ -44,7 +44,7 @@ namespace WordGuessGame
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    streamWriter.WriteLine(RandomNumberGenerator());
+                    streamWriter.WriteLine(RandomNumberGenerator(10));
                 }
             }
         }
@@ -54,10 +54,10 @@ namespace WordGuessGame
             File.Delete(path);
         }
 
-        static int RandomNumberGenerator()
+        static int RandomNumberGenerator(int upper)
         {
             Random rand = new Random();
-            return rand.Next(0, 11);
+            return rand.Next(0, upper);
         }
     }
 }
