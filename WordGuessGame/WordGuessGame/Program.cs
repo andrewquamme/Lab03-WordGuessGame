@@ -8,17 +8,16 @@ namespace WordGuessGame
         static void Main(string[] args)
         {
             string path = "../../../../words.txt";
-            if (File.Exists(path))
-            {
-                FileReadWords(path);
-            }
-            else
+            
+            if (!File.Exists(path))
             {
                 FileCreateWords(path);
             }
-            FileAppendWord(path);
-            //FileDeleteWords(path);
-            //RandomNumberGenerator();
+
+            for (int i = 0; i < 20; i++)
+            {
+                Console.WriteLine(GetRandomWord(path));
+            }
         }
 
         static void FileCreateWords(string path)
@@ -29,23 +28,16 @@ namespace WordGuessGame
             }
         }
 
-        static void FileReadWords(string path)
+        static string[] FileReadWords(string path)
         {
-            string[] words = File.ReadAllLines(path);
-            for (int i = 0; i < words.Length; i++)
-            {
-                Console.WriteLine(words[i]);
-            }
+            return File.ReadAllLines(path);
         }
 
         static void FileAppendWord(string path)
         {
             using (StreamWriter streamWriter = File.AppendText(path))
             {
-                for (int i = 0; i < 10; i++)
-                {
-                    streamWriter.WriteLine(RandomNumberGenerator(10));
-                }
+                //streamWriter.WriteLine(DateTime.UtcNow);
             }
         }
 
@@ -58,6 +50,12 @@ namespace WordGuessGame
         {
             Random rand = new Random();
             return rand.Next(0, upper);
+        }
+
+        static string GetRandomWord(string path)
+        {
+            string[] words = FileReadWords(path);
+            return words[RandomNumberGenerator(words.Length)];
         }
     }
 }
