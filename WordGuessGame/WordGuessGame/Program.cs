@@ -14,23 +14,8 @@ namespace WordGuessGame
                 FileCreateWords(path);
             }
 
-            string word = "Alligator";
-            string[] splitWord = new string[word.Length];
-            for (int i = 0; i < splitWord.Length; i++)
-            {
-                splitWord[i] = "_";
-            }
-            int solved = 0;
-            do
-            {
-                Console.WriteLine(string.Join(" ", splitWord));
-
-            } while (solved == 0);
-
-            if (word.Contains("g"))
-            {
-
-            }
+            PlayGame();
+          
             
             
             //for (int i = 0; i < 20; i++)
@@ -75,6 +60,31 @@ namespace WordGuessGame
         {
             string[] words = FileReadWords(path);
             return words[RandomNumberGenerator(words.Length)];
+        }
+
+        static void PlayGame()
+        {
+            string word = "Alligator";
+            string[] splitWord = new string[word.Length];
+            for (int i = 0; i < splitWord.Length; i++)
+            {
+                splitWord[i] = "_";
+            }
+
+            int solved = 0;
+            do
+            {
+                Console.WriteLine(string.Join(" ", splitWord));
+                Console.Write("Guess a letter: ");
+                string guessedLetter = Console.ReadLine();
+                if (word.Contains(guessedLetter))
+                {
+
+                }
+
+            } while (solved == 0);
+
+            
         }
     }
 }
