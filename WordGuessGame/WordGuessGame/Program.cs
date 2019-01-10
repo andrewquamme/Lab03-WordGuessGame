@@ -15,13 +15,6 @@ namespace WordGuessGame
             }
 
             PlayGame(GetRandomWord(path));
-          
-            
-            
-            //for (int i = 0; i < 20; i++)
-            //{
-            //    Console.WriteLine(GetRandomWord(path));
-            //}
         }
 
         static void FileCreateWords(string path)
