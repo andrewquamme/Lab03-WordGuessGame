@@ -64,27 +64,43 @@ namespace WordGuessGame
 
         static void PlayGame()
         {
-            string word = "Alligator";
-            string[] splitWord = new string[word.Length];
-            for (int i = 0; i < splitWord.Length; i++)
+            string word = "Alligator".ToUpper();
+            char[] wordArray = word.ToCharArray();
+            string[] gameWord = new string[word.Length];
+            int correct = 0;
+            string guesses = "";
+
+            for (int i = 0; i < word.Length; i++)
             {
-                splitWord[i] = "_";
+                gameWord[i] = "_";
             }
 
-            int solved = 0;
             do
             {
-                Console.WriteLine(string.Join(" ", splitWord));
+                Console.Clear();
+                Console.WriteLine(string.Join(" ", gameWord));
+                Console.WriteLine("Letters Guessed:" + guesses);
                 Console.Write("Guess a letter: ");
                 string guessedLetter = Console.ReadLine();
-                if (word.Contains(guessedLetter))
+                string letter = guessedLetter.ToUpper();
+                if (!guesses.Contains(letter))
                 {
-
+                    guesses += letter;
+                    if (word.Contains(letter))
+                    {
+                        for (int i = 0; i < wordArray.Length; i++)
+                        {
+                            if (wordArray[i] == Convert.ToChar(letter))
+                            {
+                                gameWord[i] = " " + letter;
+                                correct++;
+                            }
+                        }
+                    }
                 }
+            } while (correct < word.Length);
 
-            } while (solved == 0);
-
-            
+            Console.WriteLine("Great work!");
         }
     }
 }
