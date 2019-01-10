@@ -77,9 +77,7 @@ namespace WordGuessGame
 
             do
             {
-                Console.Clear();
-                Console.WriteLine(string.Join(" ", gameWord));
-                Console.WriteLine("Letters Guessed:" + guesses);
+                ShowWordAndLettersGuessed(gameWord, guesses);
                 Console.Write("Guess a letter: ");
                 string guessedLetter = Console.ReadLine();
                 string letter = guessedLetter.ToUpper();
@@ -99,8 +97,15 @@ namespace WordGuessGame
                     }
                 }
             } while (correct < word.Length);
-
+            ShowWordAndLettersGuessed(gameWord, guesses);
             Console.WriteLine("Great work!");
+        }
+
+        static void ShowWordAndLettersGuessed(string[] gameWord, string guesses)
+        {
+            Console.Clear();
+            Console.WriteLine(string.Join(" ", gameWord));
+            Console.WriteLine("Letters Guessed:" + guesses);
         }
     }
 }
