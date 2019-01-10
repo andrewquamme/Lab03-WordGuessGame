@@ -14,7 +14,7 @@ namespace WordGuessGame
                 FileCreateWords(path);
             }
 
-            PlayGame();
+            PlayGame(GetRandomWord(path));
           
             
             
@@ -62,9 +62,9 @@ namespace WordGuessGame
             return words[RandomNumberGenerator(words.Length)];
         }
 
-        static void PlayGame()
+        static void PlayGame(string randomWord)
         {
-            string word = "Alligator".ToUpper();
+            string word = randomWord.ToUpper();
             char[] wordArray = word.ToCharArray();
             string[] gameWord = new string[word.Length];
             int correct = 0;
