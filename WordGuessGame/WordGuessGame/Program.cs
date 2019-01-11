@@ -14,7 +14,7 @@ namespace WordGuessGame
                 FileCreateWords(path);
             }
 
-            MainMenu();
+            MainMenu(path);
         }
 
         /// <summary>
@@ -59,11 +59,12 @@ namespace WordGuessGame
             return words[RandomNumberGenerator(words.Length)];
         }
 
-        static void MainMenu()
+        static void MainMenu(string path)
         {
             bool running = true;
             do
             {
+                Console.Clear();
                 Console.WriteLine("Word Guessing Game!\nMain Menu");
                 Console.WriteLine("1. Play Game");
                 Console.WriteLine("2. Admin");
@@ -83,6 +84,8 @@ namespace WordGuessGame
                         running = false;
                         break;
                     default:
+                        Console.WriteLine("Please make a valid selection\nPress any key to continue...");
+                        Console.ReadLine();
                         break;
                 }
 

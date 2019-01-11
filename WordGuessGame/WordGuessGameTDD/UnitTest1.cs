@@ -4,12 +4,12 @@ using WordGuessGame;
 
 namespace WordGuessGameTDD
 {
-    public class UnitTest1
+    public class TestStringConverters
     {
         [Fact]
-        public void Test1()
+        public void CanStringToIntWork()
         {
-
+            Assert.Equal(3, Program.StringToInt("3"));
         }
     }
 }
