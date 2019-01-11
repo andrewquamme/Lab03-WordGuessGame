@@ -99,7 +99,7 @@ namespace WordGuessGame
                 ShowWordAndLettersGuessed(hiddenWord, guesses);
                 Console.Write("Guess a letter: ");
                 string userInput = Console.ReadLine();
-                char letter = StringToChar(userInput);
+                char letter = StringToLetter(userInput);
 
                 if (!guesses.Contains(letter) && letter != '0')
                 {
@@ -158,7 +158,7 @@ namespace WordGuessGame
             }
         }
 
-        public static char StringToChar(string input)
+        public static char StringToLetter(string input)
         {
             char letter;
             try
@@ -169,7 +169,10 @@ namespace WordGuessGame
             {
                 return '0';
             }
-            return letter;
+            if (Char.IsLetter(letter)) {
+                return letter;
+            }
+            return '0';
         }
     }
 }

@@ -17,5 +17,23 @@ namespace WordGuessGameTDD
         {
             Assert.Equal(0, Program.StringToInt("x"));
         }
+
+        [Fact]
+        public void CanStringToLetterWork()
+        {
+            Assert.Equal('F', Program.StringToLetter("f"));
+        }
+
+        [Fact]
+        public void CanStringToLetterCatchNumbers()
+        {
+            Assert.Equal('0', Program.StringToLetter("8"));
+        }
+
+        [Fact]
+        public void CanStringToLetterCatchBlanks()
+        {
+            Assert.Equal('0', Program.StringToLetter(""));
+        }
     }
 }
