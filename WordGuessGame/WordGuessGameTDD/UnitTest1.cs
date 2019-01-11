@@ -35,5 +35,12 @@ namespace WordGuessGameTDD
         {
             Assert.Equal('0', Program.StringToLetter(""));
         }
+
+        [Fact]
+        public void CanMakeHiddenWordWork()
+        {
+            string[] output = { "_", "_" };
+            Assert.Equal(output, Program.MakeHiddenWord("hi"));
+        }
     }
 }
