@@ -12,7 +12,7 @@ namespace WordGuessGame
             if (!File.Exists(path))
             //Write words file if does not exist
             {
-                FileCreateWords(path);
+                CreateWordsFile(path);
             }
 
             MainMenu(path);
@@ -22,7 +22,7 @@ namespace WordGuessGame
         /// Writes word file
         /// </summary>
         /// <param name="path">file path</param>
-        static void FileCreateWords(string path)
+        static void CreateWordsFile(string path)
         {
             using (StreamWriter streamwriter = new StreamWriter(path))
             {
@@ -30,12 +30,12 @@ namespace WordGuessGame
             }
         }
 
-        static string[] FileReadWords(string path)
+        static string[] ReadWordsFile(string path)
         {
             return File.ReadAllLines(path);
         }
 
-        static void FileAppendWord(string path, string word)
+        static void AppendWordFile(string path, string word)
         {
             using (StreamWriter streamWriter = File.AppendText(path))
             {
@@ -43,7 +43,7 @@ namespace WordGuessGame
             }
         }
 
-        static void FileDeleteWords(string path)
+        static void DeleteWordsFile(string path)
         {
             File.Delete(path);
         }
@@ -83,7 +83,7 @@ namespace WordGuessGame
 
         static string GetRandomWord(string path)
         {
-            string[] words = FileReadWords(path);
+            string[] words = ReadWordsFile(path);
             return words[RandomNumberGenerator(words.Length)].ToUpper();
         }
 
