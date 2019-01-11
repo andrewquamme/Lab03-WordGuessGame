@@ -9,7 +9,7 @@ namespace WordGuessGame
         {
             string path = "../../../../words.txt";
             if (!File.Exists(path))
-                //Write words file if does not exist
+            //Write words file if does not exist
             {
                 FileCreateWords(path);
             }
@@ -23,7 +23,7 @@ namespace WordGuessGame
         /// <param name="path">file path</param>
         static void FileCreateWords(string path)
         {
-            using(StreamWriter streamwriter = new StreamWriter(path))
+            using (StreamWriter streamwriter = new StreamWriter(path))
             {
                 streamwriter.WriteLine("Dog\nCat\nFerret\nCow\nHorse\nAlpaca\nChicken");
             }
@@ -96,21 +96,16 @@ namespace WordGuessGame
         {
             string word = randomWord.ToUpper();
             char[] wordArray = word.ToCharArray();
-            string[] gameWord = new string[word.Length];
+            string[] gameWord = MakeGameWord(word);
             int correct = 0;
             string guesses = "";
-
-            for (int i = 0; i < word.Length; i++)
-            {
-                gameWord[i] = "_";
-            }
 
             do
             {
                 ShowWordAndLettersGuessed(gameWord, guesses);
                 Console.Write("Guess a letter: ");
-                string guessedLetter = Console.ReadLine();
-                string letter = guessedLetter.ToUpper();
+                string userInput = Console.ReadLine();
+                string letter = userInput.ToUpper();
                 if (!guesses.Contains(letter))
                 {
                     guesses += letter;
@@ -127,9 +122,20 @@ namespace WordGuessGame
                     }
                 }
             } while (correct < word.Length);
+
             ShowWordAndLettersGuessed(gameWord, guesses);
             Console.Write("Great work!\nPress any key to return to Main Menu");
             Console.ReadLine();
+        }
+
+        public static string[] MakeGameWord(string word)
+        {
+            string[] gameWord = new string[word.Length];
+            for (int i = 0; i < word.Length; i++)
+            {
+                gameWord[i] = "_";
+            }
+            return gameWord;
         }
 
         static void ShowWordAndLettersGuessed(string[] gameWord, string guesses)
@@ -149,6 +155,11 @@ namespace WordGuessGame
             {
                 return 0;
             }
+        }
+
+        public static char StringToChar(string input)
+        {
+            return input;
         }
     }
 }
