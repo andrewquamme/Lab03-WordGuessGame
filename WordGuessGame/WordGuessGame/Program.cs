@@ -14,7 +14,7 @@ namespace WordGuessGame
                 FileCreateWords(path);
             }
 
-            PlayGame(GetRandomWord(path));
+            MainMenu();
         }
 
         /// <summary>
@@ -59,6 +59,36 @@ namespace WordGuessGame
             return words[RandomNumberGenerator(words.Length)];
         }
 
+        static void MainMenu()
+        {
+            bool running = true;
+            do
+            {
+                Console.WriteLine("Word Guessing Game!\nMain Menu");
+                Console.WriteLine("1. Play Game");
+                Console.WriteLine("2. Admin");
+                Console.WriteLine("3. Quit");
+                Console.Write("Select an option: ");
+                string userSelection = Console.ReadLine();
+
+                int selection = StringToInt(userSelection);
+                switch (selection)
+                {
+                    case 1:
+                        PlayGame(GetRandomWord(path));
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        running = false;
+                        break;
+                    default:
+                        break;
+                }
+
+            } while (running);
+        }
+
         static void PlayGame(string randomWord)
         {
             string word = randomWord.ToUpper();
@@ -95,7 +125,8 @@ namespace WordGuessGame
                 }
             } while (correct < word.Length);
             ShowWordAndLettersGuessed(gameWord, guesses);
-            Console.WriteLine("Great work!");
+            Console.Write("Great work!\nPress any key to return to Main Menu");
+            Console.ReadLine();
         }
 
         static void ShowWordAndLettersGuessed(string[] gameWord, string guesses)
@@ -103,6 +134,18 @@ namespace WordGuessGame
             Console.Clear();
             Console.WriteLine(string.Join(" ", gameWord));
             Console.WriteLine("Letters Guessed:" + guesses);
+        }
+
+        public static int StringToInt(string input)
+        {
+            try
+            {
+                return Convert.ToInt32(input);
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
         }
     }
 }
