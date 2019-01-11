@@ -35,11 +35,11 @@ namespace WordGuessGame
             return File.ReadAllLines(path);
         }
 
-        static void FileAppendWord(string path)
+        static void FileAppendWord(string path, string word)
         {
             using (StreamWriter streamWriter = File.AppendText(path))
             {
-                //streamWriter.WriteLine(DateTime.UtcNow);
+                streamWriter.WriteLine(word);
             }
         }
 
