@@ -8,6 +8,7 @@ namespace WordGuessGame
         static void Main(string[] args)
         {
             string path = "../../../../words.txt";
+
             if (!File.Exists(path))
             //Write words file if does not exist
             {
@@ -47,18 +48,6 @@ namespace WordGuessGame
             File.Delete(path);
         }
 
-        static int RandomNumberGenerator(int upper)
-        {
-            Random rand = new Random();
-            return rand.Next(0, upper);
-        }
-
-        static string GetRandomWord(string path)
-        {
-            string[] words = FileReadWords(path);
-            return words[RandomNumberGenerator(words.Length)];
-        }
-
         static void MainMenu(string path)
         {
             bool running = true;
@@ -92,11 +81,16 @@ namespace WordGuessGame
             } while (running);
         }
 
-        static void PlayGame(string randomWord)
+        static string GetRandomWord(string path)
         {
-            string word = randomWord.ToUpper();
-            char[] wordArray = word.ToCharArray();
-            string[] hiddenWord = MakeGameWord(word);
+            string[] words = FileReadWords(path);
+            return words[RandomNumberGenerator(words.Length)].ToUpper();
+        }
+
+        static void PlayGame(string word)
+        {
+            char[] letterArray = word.ToCharArray();
+            string[] hiddenWord = MakeHiddenWord(word);
             int correct = 0;
             string guesses = "";
 
@@ -105,15 +99,16 @@ namespace WordGuessGame
                 ShowWordAndLettersGuessed(hiddenWord, guesses);
                 Console.Write("Guess a letter: ");
                 string userInput = Console.ReadLine();
-                string letter = userInput.ToUpper();
-                if (!guesses.Contains(letter))
+                char letter = StringToChar(userInput);
+
+                if (!guesses.Contains(letter) && letter != '0')
                 {
                     guesses += letter;
                     if (word.Contains(letter))
                     {
-                        for (int i = 0; i < wordArray.Length; i++)
+                        for (int i = 0; i < letterArray.Length; i++)
                         {
-                            if (wordArray[i] == Convert.ToChar(letter))
+                            if (letterArray[i] == letter)
                             {
                                 hiddenWord[i] = " " + letter;
                                 correct++;
@@ -128,6 +123,12 @@ namespace WordGuessGame
             Console.ReadLine();
         }
 
+        static int RandomNumberGenerator(int upper)
+        {
+            Random rand = new Random();
+            return rand.Next(0, upper);
+        }
+
         public static string[] MakeHiddenWord(string word)
         {
             string[] hiddenWord = new string[word.Length];
@@ -138,11 +139,11 @@ namespace WordGuessGame
             return hiddenWord;
         }
 
-        static void ShowWordAndLettersGuessed(string[] gameWord, string guesses)
+        static void ShowWordAndLettersGuessed(string[] hiddenWord, string guesses)
         {
             Console.Clear();
-            Console.WriteLine(string.Join(" ", gameWord));
-            Console.WriteLine("Letters Guessed:" + guesses);
+            Console.WriteLine(string.Join(" ", hiddenWord));
+            Console.WriteLine("Letters Guessed: " + guesses);
         }
 
         public static int StringToInt(string input)
@@ -159,7 +160,16 @@ namespace WordGuessGame
 
         public static char StringToChar(string input)
         {
-            return input;
+            char letter;
+            try
+            {
+                letter = Convert.ToChar(input.ToUpper());
+            }
+            catch (Exception)
+            {
+                return '0';
+            }
+            return letter;
         }
     }
 }
