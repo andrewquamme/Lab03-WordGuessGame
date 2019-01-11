@@ -96,13 +96,13 @@ namespace WordGuessGame
         {
             string word = randomWord.ToUpper();
             char[] wordArray = word.ToCharArray();
-            string[] gameWord = MakeGameWord(word);
+            string[] hiddenWord = MakeGameWord(word);
             int correct = 0;
             string guesses = "";
 
             do
             {
-                ShowWordAndLettersGuessed(gameWord, guesses);
+                ShowWordAndLettersGuessed(hiddenWord, guesses);
                 Console.Write("Guess a letter: ");
                 string userInput = Console.ReadLine();
                 string letter = userInput.ToUpper();
@@ -115,7 +115,7 @@ namespace WordGuessGame
                         {
                             if (wordArray[i] == Convert.ToChar(letter))
                             {
-                                gameWord[i] = " " + letter;
+                                hiddenWord[i] = " " + letter;
                                 correct++;
                             }
                         }
@@ -123,19 +123,19 @@ namespace WordGuessGame
                 }
             } while (correct < word.Length);
 
-            ShowWordAndLettersGuessed(gameWord, guesses);
+            ShowWordAndLettersGuessed(hiddenWord, guesses);
             Console.Write("Great work!\nPress any key to return to Main Menu");
             Console.ReadLine();
         }
 
-        public static string[] MakeGameWord(string word)
+        public static string[] MakeHiddenWord(string word)
         {
-            string[] gameWord = new string[word.Length];
+            string[] hiddenWord = new string[word.Length];
             for (int i = 0; i < word.Length; i++)
             {
-                gameWord[i] = "_";
+                hiddenWord[i] = "_";
             }
-            return gameWord;
+            return hiddenWord;
         }
 
         static void ShowWordAndLettersGuessed(string[] gameWord, string guesses)
