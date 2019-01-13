@@ -216,7 +216,7 @@ namespace WordGuessGame
                 string userInput = Console.ReadLine();
                 char letter = StringToLetter(userInput);
                 
-                if (WordContainsLetter(word, letter) && letter != '0')
+                if (!WordContainsLetter(guesses, letter) && letter != '0')
                     //if letter has not been guessed and is only a letter
                 {
                     guesses += letter;
