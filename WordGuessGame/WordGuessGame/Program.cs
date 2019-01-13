@@ -53,6 +53,14 @@ namespace WordGuessGame
         /// <returns>string "success"</returns>
         public static string AppendWordFile(string path, string word)
         {
+            for (int i = 0; i < word.Length; i++)
+            {
+                // check each letter in string and make sure only letters are entered
+                if (StringToLetter(Convert.ToString(word[i])) == '0')
+                {
+                    return "***Word can only contain letters***";
+                }
+            }
             using (StreamWriter streamWriter = File.AppendText(path))
             {
                 streamWriter.WriteLine(word);
@@ -207,9 +215,9 @@ namespace WordGuessGame
                 Console.Write("Guess a letter: ");
                 string userInput = Console.ReadLine();
                 char letter = StringToLetter(userInput);
-
-                //if letter has not been guessed and is only a letter
+                
                 if (WordContainsLetter(word, letter) && letter != '0')
+                    //if letter has not been guessed and is only a letter
                 {
                     guesses += letter;
                     if (WordContainsLetter(word, letter))
@@ -231,6 +239,12 @@ namespace WordGuessGame
             Console.ReadLine();
         }
 
+        /// <summary>
+        /// Checks if word contains letter
+        /// </summary>
+        /// <param name="word">word to check</param>
+        /// <param name="letter">letter to check</param>
+        /// <returns>T/F if letter is in word</returns>
         public static bool WordContainsLetter(string word, char letter)
         {
             if (word.Contains(letter))
@@ -314,7 +328,7 @@ namespace WordGuessGame
             if (Char.IsLetter(letter)) {
                 return letter;
             }
-            return '0';
+            else return '0';
         }
     }
 }
