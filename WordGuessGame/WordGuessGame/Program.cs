@@ -153,9 +153,10 @@ namespace WordGuessGame
             {
                 Console.Clear();
                 Console.WriteLine("Word Guessing Game!\nAdmin Menu");
-                Console.WriteLine("1. Add Word");
-                Console.WriteLine("2. Delete Word");
-                Console.WriteLine("3. Return to Main Menu");
+                Console.WriteLine("1. View Words");
+                Console.WriteLine("2. Add Word");
+                Console.WriteLine("3. Delete Word");
+                Console.WriteLine("4. Return to Main Menu");
                 Console.Write("Select an option: ");
                 string userSelection = Console.ReadLine();
 
@@ -163,20 +164,29 @@ namespace WordGuessGame
                 switch (selection)
                 {
                     case 1:
+                        string[] wordList = ReadWordsFile(path);
+                        foreach(string word in wordList)
+                        {
+                            Console.WriteLine(word);
+                        }
+                        Console.Write("Press any key to continue...");
+                        Console.ReadLine();
+                        break;
+                    case 2:
                         Console.Write("Enter word to add: ");
                         wordEntry = Console.ReadLine();
                         string newWord = wordEntry;
                         Console.WriteLine(AppendWordFile(path, newWord) + "\nPress any key to continue...");
                         Console.ReadLine();
                         break;
-                    case 2:
+                    case 3:
                         Console.Write("Enter word to delete: ");
                         wordEntry = Console.ReadLine();
                         string deleteWord = wordEntry;
                         Console.Write(DeleteWord(path, deleteWord) + "\nPress any key to continue...");
                         Console.ReadLine();
                         break;
-                    case 3:
+                    case 4:
                         running = false;
                         break;
                     default:
