@@ -19,7 +19,7 @@ namespace WordGuessGame
         }
 
         /// <summary>
-        /// Create Words File
+        /// Create words file
         /// </summary>
         /// <param name="path">filepath</param>
         /// <param name="words">arr of words</param>
@@ -35,7 +35,7 @@ namespace WordGuessGame
         }
 
         /// <summary>
-        /// Read Words File
+        /// Read words from file
         /// </summary>
         /// <param name="path">filepath</param>
         /// <returns>string[] of words</returns>
@@ -44,6 +44,12 @@ namespace WordGuessGame
             return File.ReadAllLines(path);
         }
 
+        /// <summary>
+        /// Append new word to word file
+        /// </summary>
+        /// <param name="path">filepath</param>
+        /// <param name="word">word to add</param>
+        /// <returns>string "success"</returns>
         public static string AppendWordFile(string path, string word)
         {
             using (StreamWriter streamWriter = File.AppendText(path))
