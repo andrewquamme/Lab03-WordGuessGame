@@ -64,6 +64,12 @@ namespace WordGuessGame
             File.Delete(path);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="word"></param>
+        /// <returns></returns>
         public static string DeleteWord(string path, string word)
         {
             string[] oldWords = ReadWordsFile(path);
@@ -88,6 +94,10 @@ namespace WordGuessGame
             return "***Word deleted successfully***";
         }
 
+        /// <summary>
+        /// Main Menu
+        /// </summary>
+        /// <param name="path">filepath</param>
         static void MainMenu(string path)
         {
             bool running = true;
@@ -122,6 +132,10 @@ namespace WordGuessGame
             } while (running);
         }
 
+        /// <summary>
+        /// Admin Menu (add, delete words)
+        /// </summary>
+        /// <param name="path">filepath</param>
         static void AdminMenu(string path)
         {
             bool running = true;
@@ -164,12 +178,21 @@ namespace WordGuessGame
             } while (running);
         }
 
+        /// <summary>
+        /// Read word file and return random word
+        /// </summary>
+        /// <param name="path">filepath</param>
+        /// <returns></returns>
         static string GetRandomWord(string path)
         {
             string[] words = ReadWordsFile(path);
             return words[RandomNumberGenerator(words.Length)].ToUpper();
         }
 
+        /// <summary>
+        /// Play word guessing game
+        /// </summary>
+        /// <param name="word">word to play</param>
         static void PlayGame(string word)
         {
             char[] letterArray = word.ToCharArray();
@@ -207,12 +230,22 @@ namespace WordGuessGame
             Console.ReadLine();
         }
 
-        static int RandomNumberGenerator(int upper)
+        /// <summary>
+        /// Generate a random number between 0 and maxNumber
+        /// </summary>
+        /// <param name="maxNumber">upper limit (num between 0 and ?)</param>
+        /// <returns>random number</returns>
+        static int RandomNumberGenerator(int maxNumber)
         {
             Random rand = new Random();
-            return rand.Next(0, upper);
+            return rand.Next(0, maxNumber);
         }
 
+        /// <summary>
+        /// Makes array of "blank" letters for game
+        /// </summary>
+        /// <param name="word">game word</param>
+        /// <returns>string[] of blank letters (_ _ _)</returns>
         public static string[] MakeHiddenWord(string word)
         {
             string[] hiddenWord = new string[word.Length];
@@ -223,6 +256,11 @@ namespace WordGuessGame
             return hiddenWord;
         }
 
+        /// <summary>
+        /// Redisplay the "blank" game word and letters guessed
+        /// </summary>
+        /// <param name="hiddenWord">game word</param>
+        /// <param name="guesses">guessed letters</param>
         static void ShowWordAndLettersGuessed(string[] hiddenWord, string guesses)
         {
             Console.Clear();
@@ -230,6 +268,11 @@ namespace WordGuessGame
             Console.WriteLine("Letters Guessed: " + guesses);
         }
 
+        /// <summary>
+        /// Converts user entries into int for menu navigation
+        /// </summary>
+        /// <param name="input">user input</param>
+        /// <returns>user input at int</returns>
         public static int StringToInt(string input)
         {
             try
@@ -242,6 +285,11 @@ namespace WordGuessGame
             }
         }
 
+        /// <summary>
+        /// Converts user entries into char for gameplay
+        /// </summary>
+        /// <param name="input">user input</param>
+        /// <returns>user input as char</returns>
         public static char StringToLetter(string input)
         {
             char letter;
