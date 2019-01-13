@@ -83,4 +83,23 @@ namespace WordGuessGameTDD
             Assert.Equal(words, Program.ReadWordsFile(path));
         }
     }
+
+    public class TestWordChecker
+    {
+        [Fact]
+        public void LetterExists()
+        {
+            string word = "test";
+            char letter = 't';
+            Assert.True(Program.WordContainsLetter(word, letter));
+        }
+
+        [Fact]
+        public void LetterDoesNotExists()
+        {
+            string word = "test";
+            char letter = 'x';
+            Assert.False(Program.WordContainsLetter(word, letter));
+        }
+    }
 }

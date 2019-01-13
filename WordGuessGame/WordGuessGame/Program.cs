@@ -8,10 +8,11 @@ namespace WordGuessGame
         static void Main(string[] args)
         {
             string path = "../../../../words.txt";
-            string[] words = { "Dog", "Cat", "Ferret", "Cow", "Horse", "Chicken" };
             
             if (!File.Exists(path))
+                //Create word file if it doesn't already exist
             {
+                string[] words = { "Dog", "Cat", "Ferret", "Cow", "Horse", "Chicken" };
                 WriteWordsFile(path, words);
             }
 
@@ -208,10 +209,10 @@ namespace WordGuessGame
                 char letter = StringToLetter(userInput);
 
                 //if letter has not been guessed and is only a letter
-                if (!guesses.Contains(letter) && letter != '0')
+                if (WordContainsLetter(word, letter) && letter != '0')
                 {
                     guesses += letter;
-                    if (word.Contains(letter))
+                    if (WordContainsLetter(word, letter))
                     {
                         for (int i = 0; i < letterArray.Length; i++)
                         {
@@ -228,6 +229,15 @@ namespace WordGuessGame
             ShowWordAndLettersGuessed(hiddenWord, guesses);
             Console.Write("Great work!\nPress any key to return to Main Menu...");
             Console.ReadLine();
+        }
+
+        public static bool WordContainsLetter(string word, char letter)
+        {
+            if (word.Contains(letter))
+            {
+                return true;
+            }
+            else return false;
         }
 
         /// <summary>
