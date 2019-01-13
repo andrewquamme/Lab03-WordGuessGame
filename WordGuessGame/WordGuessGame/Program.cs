@@ -8,11 +8,11 @@ namespace WordGuessGame
         static void Main(string[] args)
         {
             string path = "../../../../words.txt";
-
+            string[] words = { "Dog", "Cat", "Ferret", "Cow", "Horse", "Chicken" };
+            
             if (!File.Exists(path))
-            //Write words file if does not exist
             {
-                CreateWordsFile(path);
+                WriteWordsFile(path, words);
             }
 
             MainMenu(path);
@@ -22,11 +22,14 @@ namespace WordGuessGame
         /// Writes word file
         /// </summary>
         /// <param name="path">file path</param>
-        static void CreateWordsFile(string path)
+        static void WriteWordsFile(string path, string[] words)
         {
             using (StreamWriter streamwriter = new StreamWriter(path))
             {
-                streamwriter.WriteLine("Dog\nCat\nFerret\nCow\nHorse\nAlpaca\nChicken");
+                foreach (string word in words)
+                {
+                    streamwriter.WriteLine(word);
+                }
             }
         }
 
@@ -35,17 +38,42 @@ namespace WordGuessGame
             return File.ReadAllLines(path);
         }
 
-        static void AppendWordFile(string path, string word)
+        static string AppendWordFile(string path, string word)
         {
             using (StreamWriter streamWriter = File.AppendText(path))
             {
                 streamWriter.WriteLine(word);
             }
+            return "***Word added successfully***";
         }
 
         static void DeleteWordsFile(string path)
         {
             File.Delete(path);
+        }
+
+        static string DeleteWord(string path, string word)
+        {
+            string[] oldWords = ReadWordsFile(path);
+            string[] newWords = new string[oldWords.Length - 1];
+            int j = 0;
+            for (int i = 0; i < oldWords.Length; i++)
+            {
+                try
+                {
+                    if (oldWords[i].ToUpper() != word.ToUpper())
+                    {
+                        newWords[j] = oldWords[i];
+                        j++;
+                    }
+                    WriteWordsFile(path, newWords);
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    return "***Word not found***";
+                }
+            }
+            return "***Word deleted successfully***";
         }
 
         static void MainMenu(string path)
@@ -68,6 +96,7 @@ namespace WordGuessGame
                         PlayGame(GetRandomWord(path));
                         break;
                     case 2:
+                        AdminMenu(path);
                         break;
                     case 3:
                         running = false;
@@ -78,6 +107,48 @@ namespace WordGuessGame
                         break;
                 }
 
+            } while (running);
+        }
+
+        static void AdminMenu(string path)
+        {
+            bool running = true;
+            string wordEntry = "";
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Word Guessing Game!\nAdmin Menu");
+                Console.WriteLine("1. Add Word");
+                Console.WriteLine("2. Delete Word");
+                Console.WriteLine("3. Return to Main Menu");
+                Console.Write("Select an option: ");
+                string userSelection = Console.ReadLine();
+
+                int selection = StringToInt(userSelection);
+                switch (selection)
+                {
+                    case 1:
+                        Console.Write("Enter word to add: ");
+                        wordEntry = Console.ReadLine();
+                        string newWord = wordEntry;
+                        Console.WriteLine(AppendWordFile(path, newWord) + "\nPress any key to continue...");
+                        Console.ReadLine();
+                        break;
+                    case 2:
+                        Console.Write("Enter word to delete: ");
+                        wordEntry = Console.ReadLine();
+                        string deleteWord = wordEntry;
+                        Console.Write(DeleteWord(path, deleteWord) + "\nPress any key to continue...");
+                        Console.ReadLine();
+                        break;
+                    case 3:
+                        running = false;
+                        break;
+                    default:
+                        Console.WriteLine("Please make a valid selection\nPress any key to continue...");
+                        Console.ReadLine();
+                        break;
+                }
             } while (running);
         }
 
@@ -101,6 +172,7 @@ namespace WordGuessGame
                 string userInput = Console.ReadLine();
                 char letter = StringToLetter(userInput);
 
+                //if letter has not been guessed and is only a letter
                 if (!guesses.Contains(letter) && letter != '0')
                 {
                     guesses += letter;
@@ -119,7 +191,7 @@ namespace WordGuessGame
             } while (correct < word.Length);
 
             ShowWordAndLettersGuessed(hiddenWord, guesses);
-            Console.Write("Great work!\nPress any key to return to Main Menu");
+            Console.Write("Great work!\nPress any key to return to Main Menu...");
             Console.ReadLine();
         }
 

@@ -1,14 +1,6 @@
-Cat
 Dog
+Cat
 Ferret
 Cow
-Chicken
-Duck
-Pig
-Sheep
-Goat
 Horse
-Llama
-Ostrich
-Emu
-Alpaca
+Chicken
