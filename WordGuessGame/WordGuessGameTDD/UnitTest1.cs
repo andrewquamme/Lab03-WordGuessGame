@@ -59,8 +59,9 @@ namespace WordGuessGameTDD
         [Fact]
         public void CanReadFile()
         {
-            string path = "../../../../test.txt";
+            string path = "../../../../test2.txt";
             string[] words = { "test1", "test2" };
+            Program.WriteWordsFile(path, words);
             Assert.Equal(words, Program.ReadWordsFile(path));
         }
 
@@ -70,6 +71,15 @@ namespace WordGuessGameTDD
             string path = "../../../../test.txt";
             string[] words = { "test1", "test2", "test3" };
             Program.AppendWordFile(path, "test3");
+            Assert.Equal(words, Program.ReadWordsFile(path));
+        }
+
+        [Fact]
+        public void CanDeleteWord()
+        {
+            string path = "../../../../test.txt";
+            string[] words = { "test1", "test3" };
+            Program.DeleteWord(path, "test2");
             Assert.Equal(words, Program.ReadWordsFile(path));
         }
     }

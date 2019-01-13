@@ -58,7 +58,7 @@ namespace WordGuessGame
             File.Delete(path);
         }
 
-        static string DeleteWord(string path, string word)
+        public static string DeleteWord(string path, string word)
         {
             string[] oldWords = ReadWordsFile(path);
             string[] newWords = new string[oldWords.Length - 1];
