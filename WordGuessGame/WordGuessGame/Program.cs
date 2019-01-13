@@ -19,10 +19,11 @@ namespace WordGuessGame
         }
 
         /// <summary>
-        /// Writes word file
+        /// Create Words File
         /// </summary>
-        /// <param name="path">file path</param>
-        static void WriteWordsFile(string path, string[] words)
+        /// <param name="path">filepath</param>
+        /// <param name="words">arr of words</param>
+        public static void WriteWordsFile(string path, string[] words)
         {
             using (StreamWriter streamwriter = new StreamWriter(path))
             {
@@ -33,7 +34,12 @@ namespace WordGuessGame
             }
         }
 
-        static string[] ReadWordsFile(string path)
+        /// <summary>
+        /// Read Words File
+        /// </summary>
+        /// <param name="path">filepath</param>
+        /// <returns>string[] of words</returns>
+        public static string[] ReadWordsFile(string path)
         {
             return File.ReadAllLines(path);
         }

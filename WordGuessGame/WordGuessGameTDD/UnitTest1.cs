@@ -1,5 +1,6 @@
 using System;
 using Xunit;
+using System.IO;
 using WordGuessGame;
 
 namespace WordGuessGameTDD
@@ -41,6 +42,26 @@ namespace WordGuessGameTDD
         {
             string[] output = { "_", "_" };
             Assert.Equal(output, Program.MakeHiddenWord("hi"));
+        }
+    }
+
+    public class TestSystemIO
+    {
+        [Fact]
+        public void CanWriteFile()
+        {
+            string path = "../../../../test.txt";
+            string[] words = { "test1", "test2" };
+            Program.WriteWordsFile(path, words);
+            Assert.True(File.Exists(path));
+        }
+
+        [Fact]
+        public void CanReadFile()
+        {
+            string path = "../../../../test.txt";
+            string[] words = { "test1", "test2" };
+            Assert.Equal(words, Program.ReadWordsFile(path));
         }
     }
 }
