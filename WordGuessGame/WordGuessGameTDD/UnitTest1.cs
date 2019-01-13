@@ -63,5 +63,14 @@ namespace WordGuessGameTDD
             string[] words = { "test1", "test2" };
             Assert.Equal(words, Program.ReadWordsFile(path));
         }
+
+        [Fact]
+        public void CanAppendFile()
+        {
+            string path = "../../../../test.txt";
+            string[] words = { "test1", "test2", "test3" };
+            Program.AppendWordFile(path, "test3");
+            Assert.Equal(words, Program.ReadWordsFile(path));
+        }
     }
 }

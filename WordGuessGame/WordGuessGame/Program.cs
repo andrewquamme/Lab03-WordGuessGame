@@ -44,7 +44,7 @@ namespace WordGuessGame
             return File.ReadAllLines(path);
         }
 
-        static string AppendWordFile(string path, string word)
+        public static string AppendWordFile(string path, string word)
         {
             using (StreamWriter streamWriter = File.AppendText(path))
             {
