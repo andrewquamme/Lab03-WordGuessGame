@@ -7,9 +7,6 @@ Josie Cat has requested that a “Word Guess Game” be built. The main idea of the 
 
 Each time a new game session starts, the mystery word chosen should come from an external text file that randomly selects one of the words listed. This bank of words should be editable by Josie so that she may view, add, and delete words as she wishes. She expects the game to have a simple user interface that is easy to navigate.
 
-### Program Specifications
-
-
 ### Screenshots
 ![Main Menu](assets/main-menu.png)
 
